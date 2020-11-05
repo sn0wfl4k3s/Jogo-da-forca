@@ -13,15 +13,12 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@master
     
-      - name: Angular Full CI
-        uses: colbyhill21/angular-full-ci@v1.0
-      
-      - name: Deploy Application
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: |
-          cd jogo-da-forca/
-          ng deploy
           
 
       
