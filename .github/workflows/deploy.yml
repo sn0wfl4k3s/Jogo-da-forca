@@ -24,18 +24,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
             
-      - name: Buildando a Aplicação
-        run: |
+      - run: |
           cd jogo-da-forca/
           echo '1'
           npm install
           echo '2
           npm install -g @angular/cli > /dev/null
-          echo '3'
-          npm install -g firebase-tools > /dev/null
           echo '4'
           ng build --prod
           echo '5'
-          firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
+          firebase --version
       
 
