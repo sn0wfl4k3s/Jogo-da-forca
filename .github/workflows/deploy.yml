@@ -26,13 +26,13 @@ jobs:
             
       - run: |
           cd jogo-da-forca/
-          echo '1'
+          echo '============== 1'
           npm install
-          echo '2
+          echo '============== 2
           npm install -g @angular/cli > /dev/null
-          echo '4'
+          echo '============== 3'
           ng build --prod
-          echo '5'
+          echo '============== 4'
           firebase --version
       
 
