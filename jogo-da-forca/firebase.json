@@ -1,0 +1,11 @@
+{
+    "hosting": {
+      "public": "dist/jogo-da-forca",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    }
+  }
+  
