@@ -12,10 +12,11 @@ jobs:
     steps:
   
       - uses: actions/checkout@master
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.1.2
+      - uses: actions/setup-node@v2.1.2
         with:
           # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
           node-version: 10.15.1
-      - run: npm --version
+      
+      - name: Node.js
+      - run: npm install -g @angular/cli
 
