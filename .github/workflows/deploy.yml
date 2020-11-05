@@ -30,6 +30,7 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           cd jogo-da-forca/
+          npm install
           ng build --prod
           ng deploy
           
