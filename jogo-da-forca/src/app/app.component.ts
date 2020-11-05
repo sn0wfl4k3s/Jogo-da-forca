@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'jogo-da-forca';
+  
+  alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  palavrasSelecionadas: Array<string> = [];
+  palavraEscolhida = 'cogumelo'.split('');
+
+  seJaFoiSelecionado(letra: string): boolean {
+    return this.palavrasSelecionadas.some(p => p === letra);
+  }
+
+  selecionarPalavra(letra: string): void {
+    this.palavrasSelecionadas.push(letra);
+  }
+
+
+
+
 }
