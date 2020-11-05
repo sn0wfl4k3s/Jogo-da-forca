@@ -35,6 +35,8 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: | 
           cd jogo-da-forca/
+          npm install -g firebase-tools
+          firebase login:ci --no-localhost ${{ secrets.FIREBASE_TOKEN }}
           ng deploy
 
 
