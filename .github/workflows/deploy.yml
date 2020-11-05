@@ -14,10 +14,13 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: '14.x'
-    - run: cd jogo-da-forca/
-    - run: npm install
-    - run: npm install -g @angular/cli
-    - run: npm run build:prod
+    - run: |
+        cd jogo-da-forca/
+        ls
+        npm install
+        ls
+        npm install -g @angular/cli
+
     - uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting
