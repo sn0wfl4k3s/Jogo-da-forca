@@ -31,6 +31,8 @@ jobs:
           ng build --prod
           
       - name: Deployando  a Aplicação
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: | 
           cd jogo-da-forca/
           ng deploy
