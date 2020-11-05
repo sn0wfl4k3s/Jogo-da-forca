@@ -1,0 +1,29 @@
+name: Deploy Firebase
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      
+      - name: Checkout the repository
+        uses: actions/checkout@master
+        
+      - name: Deploy Application
+        env:
+          FIREBASE_TOKEN : ${{ secrets.FIREBASE_TOKEN  }}
+        run: |
+          cd jogo-da-forca/
+          ng deploy
+          
+
+      
+
+
+
+
+
