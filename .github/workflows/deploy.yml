@@ -14,13 +14,11 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: '14.x'
-    - run: |
+    - name: Buildando a Aplicação
+      run: |
         cd jogo-da-forca/
-        ls
         npm install
-        ls
         npm install -g @angular/cli
-        ls
         ng build --prod
 
     - uses: w9jds/firebase-action@master
