@@ -25,6 +25,7 @@ jobs:
             ${{ runner.os }}-node-
  
       - run: |
+          cd jogo-da-forca/
           npm install
           npm install -g @angular/cli > /dev/null
           ng build --prod
