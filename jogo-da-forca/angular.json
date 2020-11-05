@@ -121,8 +121,13 @@
               "devServerTarget": "jogo-da-forca:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "jogo-da-forca"
 }
