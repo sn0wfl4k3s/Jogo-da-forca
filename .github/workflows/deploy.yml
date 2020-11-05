@@ -10,16 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      
-      - name: Checkout the repository
-        uses: actions/checkout@master
-      
-      - name: Preparando Node.js
-        uses: actions/setup-node@v2.1.2
+  
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v2.1.2
         with:
           node-version: 12.x
-      
-      - name: testando node
+      - name: node
         run: |
           npm --version
     
