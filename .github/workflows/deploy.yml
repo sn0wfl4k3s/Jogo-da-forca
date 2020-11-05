@@ -5,34 +5,20 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  firebase-deploy:
+
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1 #this installs node and npm for us
-        with:
-          node-version: '14.x'
- 
-      - uses: actions/cache@v1 # this allows for re-using node_modules caching, making builds a bit faster.
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-            
-      - run: |
-          cd jogo-da-forca/
-          echo '============== 1'
-          npm install
-          echo '============== 2
-          npm install -g @angular/cli > /dev/null
-          echo '============== 3'
-          ng build --prod
-          echo '============== 4'
-          firebase --version
-      
-
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '10.x'
+    - run: cd jogo-da-forca/
+    - run: npm install
+    - run: npm run build:prod
+    - uses: w9jds/firebase-action@master
+      with:
+        args: deploy --only hosting
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
