@@ -20,8 +20,9 @@ jobs:
         npm install
         npm install -g @angular/cli
         ng build --prod
-
-    - uses: w9jds/firebase-action@master
+        
+    - name: Deployando a Aplicação
+      uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting
       env:
