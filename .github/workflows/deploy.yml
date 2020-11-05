@@ -28,13 +28,13 @@ jobs:
         run: npm install -g @angular/cli
       
       - name: Buildando Aplicação
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           cd jogo-da-forca/
           npm install
           ng build --prod
-          ng deploy
+        
+      - name: Deployando a aplicação
+        run: firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
           
 
       
