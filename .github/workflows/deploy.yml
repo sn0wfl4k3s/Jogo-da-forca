@@ -23,20 +23,14 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+            
       - name: Buildando a Aplicação
         run: |
           cd jogo-da-forca/
           npm install
           npm install -g @angular/cli > /dev/null
-          ng build --prod
-          
-      - name: Deployando  a Aplicação
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: | 
-          cd jogo-da-forca/
           npm install -g firebase-tools > /dev/null
-          firebase login:ci --no-localhost ${{ secrets.FIREBASE_TOKEN }}
-          ng deploy
-
+          ng build --prod
+          firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
+      
 
