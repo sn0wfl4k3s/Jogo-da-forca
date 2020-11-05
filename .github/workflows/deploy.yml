@@ -5,20 +5,33 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build and deploy:
+    
     runs-on: ubuntu-latest
     
     steps:
       
       - name: Checkout the repository
         uses: actions/checkout@master
-    
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+      
+      - name: Preparando Node.js
+        uses: actions/setup-node@v1
         with:
-          args: deploy --only hosting
+          node-version: '14.x'
+      
+      - name: Preparando Firebase
+        run: npm install -g firebase-tools
+      
+      - name: Preparando Angular
+        run: npm install -g @angular/cli
+      
+      - name: Buildando Aplicação
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          cd jogo-da-forca/
+          ng build --prod
+          ng deploy
           
 
       
