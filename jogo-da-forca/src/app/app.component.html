@@ -9,7 +9,7 @@
 
   <div class="d-inline" *ngFor="let letra of palavraEscolhida">
     <span style="font-size: 45px;">
-      {{ seJaFoiSelecionado(letra) ? letra : '_' }}
+      {{ jaSelecionado(letra) || acertou ? letra : '_' }}
     </span>
   </div>
 
@@ -17,8 +17,7 @@
   <br>
 
   <div class="d-inline" *ngFor="let letra of alfabeto">
-    <button class="btn btn-primary m-1 rounded-circle" [disabled]="seJaFoiSelecionado(letra)" 
-      (click)="selecionarPalavra(letra)">
+    <button class="btn btn-primary m-1 rounded-circle" [disabled]="jaSelecionado(letra)" (click)="selecionarLetra(letra)">
       {{ letra }}
     </button>
   </div>
@@ -29,12 +28,19 @@
   <div>
     <form>
       <div class="input-group mb-3 border-bottom">
-        <input class="form-control" type="text" name="tentativa" id="tentativa" [(ngModel)]="tentativa" autofocus>
+        <input class="form-control" type="text" name="tentativa" id="tentativa" [(ngModel)]="tentativa">
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="button" id="button-addon2">Chutar!</button>
+          <button class="btn btn-outline-primary" name="chutar" id="chutar" (click)="chutaPalavra()">Chutar!</button>
         </div>
       </div>
     </form>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="pull-right">
+    <img src="/assets/images/hangman.jpg" style="height: 150px;">
   </div>
 
 </div>

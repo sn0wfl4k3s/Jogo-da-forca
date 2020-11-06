@@ -11,13 +11,20 @@ export class AppComponent {
   palavraEscolhida = 'cogumelo'.split('');
   palavrasSelecionadas: Array<string> = [];
   tentativa: string;
+  acertou = false;
 
-  seJaFoiSelecionado(letra: string): boolean {
-    return this.palavrasSelecionadas.some(p => p === letra.toUpperCase());
+  jaSelecionado(letra: string): boolean {
+    return this.palavrasSelecionadas.some(p => p.toUpperCase() === letra.toUpperCase());
   }
 
-  selecionarPalavra(letra: string): void {
+  selecionarLetra(letra: string): void {
     this.palavrasSelecionadas.push(letra);
+  }
+
+  chutaPalavra(): void {
+    if (this.tentativa === this.palavraEscolhida.join('')) {
+      this.acertou = true;
+    }
   }
 
 }
