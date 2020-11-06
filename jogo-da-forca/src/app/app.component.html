@@ -1,12 +1,40 @@
 <div class="container w-50">
-  
+
   <h1 class="mt-3">
     Jogo da Forca
   </h1>
-  
-  <div class="div-letras-disponiveis"  *ngFor="let letra of alfabeto">
-    <button class="btn btn-primary m-1" [disabled]="seJaFoiSelecionado(letra)" (click)="selecionarPalavra(letra)">
+
+  <br>
+  <br>
+
+  <div class="d-inline" *ngFor="let letra of palavraEscolhida">
+    <span style="font-size: 45px;">
+      {{ seJaFoiSelecionado(letra) ? letra : '_' }}
+    </span>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="d-inline" *ngFor="let letra of alfabeto">
+    <button class="btn btn-primary m-1 rounded-circle" [disabled]="seJaFoiSelecionado(letra)" 
+      (click)="selecionarPalavra(letra)">
       {{ letra }}
     </button>
   </div>
+
+  <br>
+  <br>
+
+  <div>
+    <form>
+      <div class="input-group mb-3 border-bottom">
+        <input class="form-control" type="text" name="tentativa" id="tentativa" [(ngModel)]="tentativa" autofocus>
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="button" id="button-addon2">Chutar!</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
 </div>

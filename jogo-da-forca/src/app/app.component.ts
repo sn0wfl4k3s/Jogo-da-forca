@@ -6,20 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
+
   alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  palavrasSelecionadas: Array<string> = [];
   palavraEscolhida = 'cogumelo'.split('');
+  palavrasSelecionadas: Array<string> = [];
+  tentativa: string;
 
   seJaFoiSelecionado(letra: string): boolean {
-    return this.palavrasSelecionadas.some(p => p === letra);
+    return this.palavrasSelecionadas.some(p => p === letra.toUpperCase());
   }
 
   selecionarPalavra(letra: string): void {
     this.palavrasSelecionadas.push(letra);
   }
-
-
-
 
 }
