@@ -22,9 +22,7 @@ export class AppComponent {
   }
 
   chutaPalavra(): void {
-    if (this.tentativa === this.palavraEscolhida.join('')) {
-      this.acertou = true;
-    }
+    this.acertou = (this.tentativa === this.palavraEscolhida.join(''));
   }
 
 }
