@@ -9,7 +9,7 @@
 
   <div class="d-inline" *ngFor="let letra of palavraEscolhida">
     <span style="font-size: 45px;">
-      {{ jaSelecionado(letra) || acertou ? letra : '_' }}
+      {{ jaSelecionado(letra) || partida.seTerminou ? letra : '_' }}
     </span>
   </div>
 
@@ -17,8 +17,8 @@
   <br>
 
   <div class="d-inline" *ngFor="let letra of alfabeto">
-    <button class="btn btn-primary m-1 rounded-circle" [disabled]="jaSelecionado(letra)" (click)="selecionarLetra(letra)">
-      {{ letra }}
+    <button class="btn btn-primary m-1 rounded-circle" [disabled]="jaSelecionado(letra) || partida.seTerminou" (click)="selecionarLetra(letra)">
+      {{ letra | uppercase }}
     </button>
   </div>
 
@@ -28,9 +28,9 @@
   <div>
     <form>
       <div class="input-group mb-3 border-bottom">
-        <input class="form-control" type="text" name="tentativa" id="tentativa" [(ngModel)]="tentativa">
+        <input [disabled]="partida.seTerminou" class="form-control" type="text" name="tentativa" id="tentativa" [(ngModel)]="tentativa">
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" name="chutar" id="chutar" (click)="chutaPalavra()">
+          <button [disabled]="partida.seTerminou" class="btn btn-outline-primary" name="chutar" id="chutar" (click)="chutaPalavra()">
             Chutar!
           </button>
         </div>
@@ -41,8 +41,23 @@
   <br>
   <br>
 
-  <div class="pull-right">
-    <img src="/assets/images/hangman.jpg" style="height: 150px;">
+  <div class="container" *ngIf="!partida.seTerminou">
+    <span> Você possui 
+      <b [ngStyle]="{color: numeroDeTentativas === 1 ? 'red' : numeroDeTentativas === 2 ? 'orangered' : 'black'}">
+        {{ numeroDeTentativas }}
+      </b> tentativas. </span>
+  </div>
+
+  <div class="container" *ngIf="partida.seTerminou">
+    <h1 *ngIf="partida.seGanhou" style="color: green;">Você venceu!</h1>
+    <h1 *ngIf="!partida.seGanhou" style="color: red;">Você perdeu!</h1>
+    <br>
+    <br>
+    <button class="btn btn-primary" (click)="novaPartida()">Nova Partida</button>
+  </div>
+
+  <div class="container" *ngIf="partida.seTerminou">
+    <img class="pull-right" *ngIf="!partida.seGanhou" src="/assets/images/hangman dead.gif" style="height: 150px;">
   </div>
 
 </div>
