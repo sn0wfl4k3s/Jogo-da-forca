@@ -6,6 +6,9 @@ on:
 
 jobs:
   firebase-deploy:
+    
+    env:
+      PROJECT_PATH: jogo-da-forca
 
     runs-on: ubuntu-latest
 
@@ -16,7 +19,7 @@ jobs:
         node-version: '14.x'
     - name: Buildando a Aplicação
       run: |
-        cd jogo-da-forca/
+        cd ${{ env.PROJECT_PATH }}/
         npm install
         npm install -g @angular/cli
         ng build --prod
@@ -26,5 +29,5 @@ jobs:
       with:
         args: deploy --only hosting
       env:
-        PROJECT_PATH : jogo-da-forca
+        PROJECT_PATH : ${{ env.PROJECT_PATH }}
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
